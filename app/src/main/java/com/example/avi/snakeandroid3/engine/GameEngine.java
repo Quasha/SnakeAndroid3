@@ -4,7 +4,6 @@ import com.example.avi.snakeandroid3.classes.Coordinates;
 import com.example.avi.snakeandroid3.enums.Direction;
 import com.example.avi.snakeandroid3.enums.GameStatus;
 import com.example.avi.snakeandroid3.enums.TileType;
-import com.example.avi.snakeandroid3.views.SnakeView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,6 +23,7 @@ public class GameEngine {
     private List<Coordinates> snake = new ArrayList<>();
     private List<Coordinates> food = new ArrayList<>();
     private boolean eaten = false;
+    private int score = 0;
 
     private Coordinates getSnakeHead(){
         return snake.get(0);
@@ -34,6 +34,10 @@ public class GameEngine {
 
     public GameEngine(){
 
+    }
+
+    public int getScore(){
+        return score;
     }
 
     public void initGame(){
@@ -69,7 +73,7 @@ public class GameEngine {
         //check for game over - wall collision
         for( Coordinates wall: walls){
             if( snake.get(0).equals(wall)){
-                    currentGameStatus = GameStatus.Over;
+                currentGameStatus = GameStatus.Over;
             }
         }
 
@@ -84,6 +88,7 @@ public class GameEngine {
         for( Coordinates foodCord: food){
             if( snake.get(0).equals(foodCord)){
                 food.remove(foodCord);
+                score += 10;
                 CreateFood();
                 eaten = true;
             }
@@ -183,9 +188,9 @@ public class GameEngine {
             }
 
             for( Coordinates foodCord: food)
-            if(foodCord.equals( foodCoordinates)) {
-                collision = true;
-            }
+                if(foodCord.equals( foodCoordinates)) {
+                    collision = true;
+                }
 
             added = !collision;
         }
