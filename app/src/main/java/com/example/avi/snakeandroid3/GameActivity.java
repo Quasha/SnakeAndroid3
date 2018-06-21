@@ -23,7 +23,7 @@ public class GameActivity extends AppCompatActivity implements View.OnTouchListe
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_game);
 
         gameEngine = new GameEngine();
         gameEngine.initGame();
